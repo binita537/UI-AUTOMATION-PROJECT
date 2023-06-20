@@ -18,6 +18,7 @@
 		<selenium.version>3.141.59</selenium.version>
 		<webdrivermanager.version>4.3.1</webdrivermanager.version>
 		<testng.version>7.4.0</testng.version>
+		<cucumber.version>6.9.1</cucumber.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -49,6 +50,23 @@
 			<artifactId>testng</artifactId>
 			<version>${testng.version}</version>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-spring</artifactId>
+			<version>${cucumber.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-java</artifactId>
+			<version>${cucumber.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-testng</artifactId>
+			<version>${cucumber.version}</version>
 		</dependency>
 
 
