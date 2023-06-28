@@ -1,52 +1,60 @@
 package com.qaproject.drivers;
 
 import org.openqa.selenium.WebDriver;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import com.qaproject.config.AppConfig;
+import com.qaproject.config.BrowserConfig;
 
 @Component
 public class DriverFactory {
 
-
 	private WebDriver driver;
-	
-	@Value("${app.url}")
-	private String appUrl;
-	
-	@Value("${browser.name}")
-	private String browserName;
-	
-	
 	private BaseDriver baseDriverInstance;
+
+	
+	@Autowired
+	private BrowserConfig browserConfig;
+	
+	@Autowired
+	private AppConfig appConfig;
+
+	public void someMethod() {
+        System.out.println(appConfig.getUrl());
+	    System.out.println( appConfig.getUsername());
+	    System.out.println(appConfig.getPassword());
+	    }
+	
+	public void someMethod1() {
+	    System.out.println(browserConfig.getName());
+	    System.out.println(browserConfig.getVersion());
+	  }
 
 	public WebDriver getBrowser() {
 
-		if (browserName.equalsIgnoreCase(BrowserType.CHROME.getValue())) {
+		if (browserConfig.getName().equalsIgnoreCase(BrowserType.CHROME.getValue())) {
 			baseDriverInstance = new ChromeDriverInstance();
-		} else if (browserName.equalsIgnoreCase(BrowserType.FIREFOX.getValue())) {
+		} else if (browserConfig.getName().equalsIgnoreCase(BrowserType.FIREFOX.getValue())) {
 			baseDriverInstance = new FirefoxDriverInstance();
-		} else if (browserName.equalsIgnoreCase(BrowserType.IE.getValue())) {
+		} else if (browserConfig.getName().equalsIgnoreCase(BrowserType.IE.getValue())) {
 			baseDriverInstance = new IEDriverInstance();
 		} else {
-			throw new IllegalArgumentException("Invalid browser type: " + browserName);
+			throw new IllegalArgumentException("Invalid browser type: " + browserConfig.getName());
 
 		}
-		
-		 driver = baseDriverInstance.createDriver();
 
+		driver = baseDriverInstance.createDriver();
 
 		return driver;
 	}
-	
-	  public void launchUrl() {
-	        if (driver == null) {
-	            throw new IllegalStateException("WebDriver instance is not initialized.");
-	        }
 
-	        driver.get(appUrl);
-	    }
+	public void launchUrl() {
+		if (driver == null) {
+			throw new IllegalStateException("WebDriver instance is not initialized.");
+		}
 
-	
-	
+		driver.get(appConfig.getUrl());
+	}
 
 }

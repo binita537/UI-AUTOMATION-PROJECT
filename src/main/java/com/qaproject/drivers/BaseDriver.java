@@ -4,29 +4,42 @@ import org.openqa.selenium.WebDriver;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
 
-
-
 public abstract class BaseDriver {
 	protected WebDriver driver;
 
-    public abstract WebDriver createDriver();
+	public abstract WebDriver createDriver();
 
-    public void navigateToUrl(String url) {
-        driver.get(url);
-    }
+	public WebDriver getDriver() {
+		return driver;
+	}
 
-    public String getCurrentUrl() {
-        return driver.getCurrentUrl();
-    }
+	public void setDriver(WebDriver driver) {
+		this.driver = driver;
+	}
 
-    public void maximizeWindow() {
-        driver.manage().window().maximize();
-    }
+	public void navigateToUrl(String url) {
+		if (driver != null) {
+			driver.get(url);
+		}
+	}
 
-    public void closeDriver() {
-        if (driver != null) {
-            driver.quit();
-        }
-    }
+	public String getCurrentUrl() {
+		if (driver != null) {
+			return driver.getCurrentUrl();
+		}
+		return null;
+	}
+
+	public void maximizeWindow() {
+		if (driver != null) {
+			driver.manage().window().maximize();
+		}
+	}
+
+	public void closeDriver() {
+		if (driver != null) {
+			driver.quit();
+		}
+	}
 
 }

@@ -8,6 +8,8 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class ChromeDriverInstance extends BaseDriver {
+	
+	
 
     @Override
     public WebDriver createDriver() {
@@ -18,7 +20,9 @@ public class ChromeDriverInstance extends BaseDriver {
         return new ChromeDriver(chromeOptions);
     }
 
-    public void setCabailitiesforChromeDriver(ChromeOptions options) {
+   
+
+	public void setCabailitiesforChromeDriver(ChromeOptions options) {
         DesiredCapabilities capabilities = DesiredCapabilities.chrome();
         capabilities.setCapability("browserName", "chrome");
         capabilities.setCapability("version", "latest");
