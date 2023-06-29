@@ -2,6 +2,8 @@ package com.qaproject.drivers;
 
 import org.openqa.selenium.WebDriver;
 
+import com.qaproject.utils.CommonUtils;
+
 public class MainClass {
 	WebDriver driver ;
 
@@ -13,8 +15,9 @@ public class MainClass {
 	
 	public void getbrowser()
 	{
-		
-		DriverFactory driverFactory =new DriverFactory();
-		driverFactory.getBrowser();
+		/*
+		 * DriverFactory driverFactory=new DriverFactory(); CommonUtils commonUtils =new
+		 * CommonUtils(driverFactory); commonUtils.getWebDriver();
+		 */
 	}
 }

@@ -13,25 +13,20 @@ public class DriverFactory {
 	private WebDriver driver;
 	private BaseDriver baseDriverInstance;
 
-	
 	@Autowired
 	private BrowserConfig browserConfig;
-	
+
 	@Autowired
 	private AppConfig appConfig;
 
-	public void someMethod() {
-        System.out.println(appConfig.getUrl());
-	    System.out.println( appConfig.getUsername());
-	    System.out.println(appConfig.getPassword());
-	    }
-	
-	public void someMethod1() {
-	    System.out.println(browserConfig.getName());
-	    System.out.println(browserConfig.getVersion());
-	  }
+	public WebDriver getWebDriverInstance(BaseDriver baseDriver) {
+		driver = baseDriver.createDriver();
+		System.out.println("I have given web driver instance");
+		return driver;
+	}
 
-	public WebDriver getBrowser() {
+
+	public BaseDriver initializeBaseDriverInstance() {
 
 		if (browserConfig.getName().equalsIgnoreCase(BrowserType.CHROME.getValue())) {
 			baseDriverInstance = new ChromeDriverInstance();
@@ -44,11 +39,11 @@ public class DriverFactory {
 
 		}
 
-		driver = baseDriverInstance.createDriver();
-
-		return driver;
+		System.out.println("I have given Base driver instance");
+		return baseDriverInstance;
 	}
 
+// Need to write in Step defination
 	public void launchUrl() {
 		if (driver == null) {
 			throw new IllegalStateException("WebDriver instance is not initialized.");
