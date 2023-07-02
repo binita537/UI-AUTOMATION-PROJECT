@@ -21,7 +21,6 @@ public class DriverFactory {
 
 	public WebDriver getWebDriverInstance(BaseDriver baseDriver) {
 		driver = baseDriver.createDriver();
-		System.out.println("I have given web driver instance");
 		return driver;
 	}
 

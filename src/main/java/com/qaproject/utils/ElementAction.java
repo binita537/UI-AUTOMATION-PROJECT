@@ -6,24 +6,16 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-import com.qaproject.drivers.BaseDriver;
-
+@Component
 public class ElementAction {
    
 	
-	private WebDriver driver;
-    private WebDriverWait wait;
-    private BaseDriver baseDriver;
-    
-    
-
-    public ElementAction(WebDriver driver) {
-		this.driver = baseDriver.getDriver();
-		this.wait = new WebDriverWait(driver, 10);
-		
-		System.out.println("I have initlise the object");
-	}
+	@Autowired
+	WebDriverWait wait;
+ 
 
 	public void click(WebDriver driver,WebElement element) {
         element.click();
@@ -46,7 +38,7 @@ public class ElementAction {
          return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
      }
 
-     public WebElement waitUntilElementClickable(WebDriver driver,By locator, int timeoutInSeconds) {
+     public WebElement waitUntilElementClickable(WebDriver driver,By locator) {
          return wait.until(ExpectedConditions.elementToBeClickable(locator));
      }
 
