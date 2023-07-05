@@ -14,16 +14,22 @@ public class Hooks extends BaseDefinition{
 
 	@Before
 	public void setup() {
+		if(driver==null)
+		{
+			baseDriver=driverFactory.initializeBaseDriverInstance();
+			driver= baseDriver.createDriver();
+			
+		}
+		driver.get(appConfig.getUrl());
 		
-		driverFactory.initializeBaseDriverInstance();
-		driver= driverFactory.getWebDriverInstance(baseDriver);
+		
 	}
 	
 
 	@After
 	public void teardown() {
 		if (driver != null) {
-			driver.quit();
+			driver.close();
 		}
 	}
 

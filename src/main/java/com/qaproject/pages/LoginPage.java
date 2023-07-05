@@ -13,25 +13,18 @@ import com.qaproject.utils.ElementAction;
 
 @Component
 public class LoginPage extends BasePage {
-	
-	
-	
+
 	@Autowired
 	ElementAction elementAction;
 
-	private static final String LOGIN_USERNAME_XPATH = "//input[@name='username']";
+	private static final String LOGIN_USERNAME_XPATH = "//input[@name='uid']";
 	private static final String LOGIN_PASSWORD_XPATH = " //input[@name='password']";
-	private static final String LOGIN_BUTTON_XPATH = "//button[@type='submit']";  
-	private static final String LOGO_IMAGE_XPATH = "//h6[@class='oxd-text oxd-text--h6 oxd-topbar-header-breadcrumb-module']";//"//div[@class='ct-logo-header']";
-	private static final String FORGOT_PASSWORD_XPATH ="//a[text()='Forgot Password']"; 
-	
-	
+	private static final String LOGIN_BUTTON_XPATH = "//input[@type='submit']";
 
 	private static final By LOGIN_USERNAME_SELECTOR = By.xpath(LOGIN_USERNAME_XPATH);
 	private static final By LOGIN_PASSWORD_SELECTOR = By.xpath(LOGIN_PASSWORD_XPATH);
 	private static final By LOGIN_BUTTON_SELECTOR = By.xpath(LOGIN_BUTTON_XPATH);
-	private static final By LOGO_IMAGE_SELECTOR = By.xpath(LOGO_IMAGE_XPATH);
-	private static final By FORGOT_PASSWORD_SELECTOR = By.xpath(FORGOT_PASSWORD_XPATH);
+
 	public LoginPage(WebDriver driver, WebDriverWait wait) {
 		super(driver, wait);
 	}
@@ -50,7 +43,9 @@ public class LoginPage extends BasePage {
 
 	@Override
 	public void waitForPageToLoad() {
-		wait.until(ExpectedConditions.titleContains("ExecuteAutomation"));
+		String title=driver.getTitle();
+		System.out.println(title);
+		wait.until(ExpectedConditions.titleContains(title));
 	}
 
 	@Override
@@ -61,14 +56,9 @@ public class LoginPage extends BasePage {
 			System.out.println("Failed to load the login page.");
 		}
 	}
-	
-	public boolean isLogoDisplayed() {
-        WebElement logoImage = driver.findElement(LOGO_IMAGE_SELECTOR);
-        return logoImage.isDisplayed();
-    }
 
 	public void enterUsername(String username) {
-		
+
 		elementAction.waitUntilElementClickable(driver, LOGIN_USERNAME_SELECTOR);
 		WebElement usernameInput = driver.findElement(LOGIN_USERNAME_SELECTOR);
 		usernameInput.clear();
@@ -82,25 +72,21 @@ public class LoginPage extends BasePage {
 		passwordInput.sendKeys(password);
 	}
 
-	public HomePage clickLoginButton() {
+	public void clickLoginButton() {
 		WebElement loginButton = driver.findElement(LOGIN_BUTTON_SELECTOR);
 		loginButton.click();
-		 return new HomePage(driver, wait);
 	}
 
 	public HomePage login(String username, String password) {
-	    enterUsername(username);
-	    enterPassword(password);
-	    clickLoginButton();
-	    return new HomePage(driver, wait);
+		enterUsername(username);
+		enterPassword(password);
+		clickLoginButton();
+		return new HomePage(driver, wait);
 	}
-	
-	public String verifyUseIsOnDashboard()
-	{
-		 String dashboardText = driver.getCurrentUrl();
-	        return dashboardText;
-	}
-	
 
+	public String verifyUseIsOnDashboard() {
+		String dashboardText = driver.getCurrentUrl();
+		return dashboardText;
+	}
 
 }

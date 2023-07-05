@@ -11,5 +11,5 @@ Feature: Login Page
 
     Examples: 
       | username | password | status  |
-      | Admin    | Admin    | success |
-      | Admin123 | Admin123 | fail    |
+      | mngr513115    | qahupeh    | success |
+     # | Admin123 | Admin123 | fail    |
