@@ -7,11 +7,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.qaproject.utils.ElementAction;
 
 @Component
+@Scope("cucumber-glue")
 public class LoginPage extends BasePage {
 
 	@Autowired

@@ -29,7 +29,7 @@ public class Hooks extends BaseDefinition{
 	@After
 	public void teardown() {
 		if (driver != null) {
-			driver.close();
+			driver.quit();
 		}
 	}
 
