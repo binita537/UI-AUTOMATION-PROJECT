@@ -1,4 +1,4 @@
-package com.qaproject.config;
+ package com.qaproject.config;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -11,7 +11,7 @@ import com.qaproject.drivers.BaseDriver;
 import com.qaproject.drivers.DriverFactory;
 
 @Configuration
-@ComponentScan("com.qaproject.config")
+@ComponentScan("com.qaproject")
 public class WebDriverConfig {
 
 

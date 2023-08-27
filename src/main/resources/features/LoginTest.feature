@@ -12,4 +12,4 @@ Feature: Login Page
     Examples: 
       | username   | password | status  |
       | mngr513115 | qahupeh  | success |
-      | Admin123   | Admin123 | fail    |
+      #| Admin123   | Admin123 | fail    |

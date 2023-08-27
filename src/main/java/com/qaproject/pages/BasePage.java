@@ -6,11 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import com.qaproject.utils.ElementAction;
+
 @Component
 public abstract class BasePage {
 
     protected WebDriver driver;
     protected WebDriverWait wait;
+    
+    @Autowired
+	ElementAction elementAction;
 
     @Value("${page.wait.duration.seconds:10}")
     private int waitDuration;

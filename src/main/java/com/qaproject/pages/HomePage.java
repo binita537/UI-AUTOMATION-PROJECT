@@ -39,7 +39,7 @@ public class HomePage extends BasePage {
 
 	@Override
 	public void waitForPageToLoad() {
-		wait.until(ExpectedConditions.titleContains("ExecuteAutomation"));
+		wait.until(ExpectedConditions.titleContains("Guru99 Bank Home Page"));
 	}
 
 	@Override

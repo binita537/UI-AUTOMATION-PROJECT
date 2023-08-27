@@ -7,17 +7,17 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.qaproject.utils.ElementAction;
 
 @Component
-@Scope("cucumber-glue")
+@Scope(value=ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class LoginPage extends BasePage {
 
-	@Autowired
-	ElementAction elementAction;
+	
 
 	private static final String LOGIN_USERNAME_XPATH = "//input[@name='uid']";
 	private static final String LOGIN_PASSWORD_XPATH = " //input[@name='password']";
@@ -79,11 +79,11 @@ public class LoginPage extends BasePage {
 		loginButton.click();
 	}
 
-	public HomePage login(String username, String password) {
+	public LoginPage login(String username, String password) {
 		enterUsername(username);
 		enterPassword(password);
 		clickLoginButton();
-		return new HomePage(driver, wait);
+		return new LoginPage(driver, wait);
 	}
 
 	public String verifyUseIsOnDashboard() {

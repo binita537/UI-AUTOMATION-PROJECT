@@ -1,37 +1,40 @@
 package com.qaproject.pages;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
+@Component
+@Scope(value=ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class RegisterPage extends BasePage {
-
-	private static final String USERPROFILE_XPATH="//div[@class='profile-image-container']";
-	private static final String AVATAR_XPATH = "//div[@class='avatar-selector']//img";   //return list
-	private static final String FIRSTNAME_XPATH = "//input[@id='first_name']";
-	private static final String LASTNAME_XPATH = "//input[@id='last_name']";
-	private static final String COUNTRY_XPATH = "//div[@id='selecteCountry']";
-	private static final String EMAIL_PATH = "//input[@id='email']";
-	private static final String PASSOWRD_XPATH = "//input[@id='password']";
-	private static final String CONFIRMP_PASSWORD_XPATH = "//input[@id='password_confirmation']";
-	private static final String PROFESIONAL_XPATH = "//input[@id='designation']";
-	private static final String CREATACCOUNT_XPATH = "//button[@type='submit' and text()='Create Account']";
-
-	private static final By USERPROFILE_SELECTOR= By.xpath(USERPROFILE_XPATH);
-	private static final By AVATAR_SELECTOR = By.xpath(AVATAR_XPATH);
-	private static final By FIRSTNAME_SELECTOR = By.xpath(FIRSTNAME_XPATH);
-	private static final By LASTNAME_SELECTOR = By.xpath(LASTNAME_XPATH);
-	private static final By COUNTRY_SELECTOR = By.xpath(COUNTRY_XPATH);
-	private static final By EMAIL_SELECTOR = By.xpath(EMAIL_PATH);
-	private static final By PASSOWRD_SELECTOR = By.xpath(PASSOWRD_XPATH);
-	private static final By CONFIRMP_PASSWORD_SELECTOR = By.xpath(CONFIRMP_PASSWORD_XPATH);
-	private static final By PROFESIONAL_SELECTOR = By.xpath(PROFESIONAL_XPATH);
-	private static final By CREATACCOUNT_SELECTOR = By.xpath(CREATACCOUNT_XPATH);
-
 	
+	
+	//a[text()='here']/@href	
+	private static final String REGISTER_XPATH = "//a[text()='here']";
+	private static final String ACCESS_DETAIL_XPATH = "//table//tbody//tr[1]//td[1]//h2[text()='Access details to demo site.']";
+	private static final String EMAILID_XPATH = "//input[@name='emailid']";
+	private static final String SUBMIT_BUTTON_XPATH = "//input[@type='submit']";
+	private static final String USERID_XPATH="//table//tbody//tr[4]//td[text()='User ID :']/following-sibling::td";
+	private static final String PASSWORD_XPATH = "//table//tbody//tr[5]//td[text()='Password :']/following-sibling::td"; 
+	private static final String ADVERTISEMENT_XPATH ="//iframe[@title='Advertisement' and @id='ad_iframe']";
+	private static final String ADVERTISEMENT_CLOSE_BUTTON_XPATH ="//div[@id='dismiss-button']"; 
+	
+
+	private static final By REGISTER_SELECTOR = By.xpath(REGISTER_XPATH);
+	private static final By ACCESS_DETAIL_SELECTOR = By.xpath(ACCESS_DETAIL_XPATH);
+	private static final By EMAILID_SELECTOR= By.xpath(EMAILID_XPATH);
+	private static final By SUBMIT_BUTTON_SELECTOR = By.xpath(SUBMIT_BUTTON_XPATH);
+	private static final By USERID_SELECTOR = By.xpath(USERID_XPATH);
+	private static final By PASSWORD_SELECTOR = By.xpath(PASSWORD_XPATH);
+	private static final By ADVERTISEMENT_SELECTOR = By.xpath(ADVERTISEMENT_XPATH);
+	private static final By ADVERTISEMENT_CLOSE_BUTTON_SELECTOR = By.xpath(ADVERTISEMENT_CLOSE_BUTTON_XPATH);
 	
 	
 	public RegisterPage(WebDriver driver, WebDriverWait wait) {
@@ -42,7 +45,8 @@ public class RegisterPage extends BasePage {
 	@Override
 	public boolean isPageLoaded() {
 		try {
-			wait.until(ExpectedConditions.visibilityOfElementLocated(CREATACCOUNT_SELECTOR));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(ACCESS_DETAIL_SELECTOR));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(REGISTER_SELECTOR));
 			return true;
 		} catch (TimeoutException e) {
 			return false;
@@ -63,71 +67,60 @@ public class RegisterPage extends BasePage {
 		}
 	}
 
-	public void selectAvatar() {
-	    WebElement avatar = driver.findElement(AVATAR_SELECTOR);
-	    avatar.click();
-	}
-	
-	public void clickUserProfileAndSelectAvatara() {
-	    WebElement userProfile = driver.findElement(USERPROFILE_SELECTOR);
-	    userProfile.click();
-	    selectAvatar();
-	}
-	public void enterFirstName(String firstName) {
-		WebElement firstNameInput = driver.findElement(FIRSTNAME_SELECTOR);
-		firstNameInput.clear();
-		firstNameInput.sendKeys(firstName);
-	}
+	 public void clickRegister() {
+		 elementAction.waitUntilElementClickable(driver, REGISTER_SELECTOR);
+		 WebElement registerLink = driver.findElement(REGISTER_SELECTOR);
+		 registerLink.click();
+	    }
 
-	public void enterLastName(String lastName) {
-		WebElement lastNameInput = driver.findElement(LASTNAME_SELECTOR);
-		lastNameInput.clear();
-		lastNameInput.sendKeys(lastName);
-	}
+	   
+	    public void enterEmailId(String email) {
+	    	 elementAction.waitUntilElementClickable(driver, EMAILID_SELECTOR);
+			 WebElement emailInput = driver.findElement(EMAILID_SELECTOR);
+			 emailInput.clear();
+			 emailInput.sendKeys(email);
+			 }
 
-	public void selectCountry(String country) {
-		WebElement countryInput = driver.findElement(COUNTRY_SELECTOR);
-		// Add your implementation here to select the country from the dropdown
-	}
+	    public void clickSubmitButton() {
+	    	 elementAction.waitUntilElementClickable(driver, SUBMIT_BUTTON_SELECTOR);
+			 WebElement submitButton = driver.findElement(SUBMIT_BUTTON_SELECTOR);
+			 submitButton.click();
+	    }
 
-	public void enterEmail(String email) {
-		WebElement emailInput = driver.findElement(EMAIL_SELECTOR);
-		emailInput.clear();
-		emailInput.sendKeys(email);
-	}
+	    public String getUserId() {
+	    	elementAction.waitUntilElementPresent(driver, USERID_SELECTOR);
+			 WebElement userId = driver.findElement(USERID_SELECTOR);
+			// System.out.println(userId.getText());
+			return userId.getText();
+	    }
 
-	public void enterPassword(String password) {
-		WebElement passwordInput = driver.findElement(PASSOWRD_SELECTOR);
-		passwordInput.clear();
-		passwordInput.sendKeys(password);
-	}
-
-	public void enterConfirmPassword(String confirmPassword) {
-		WebElement confirmPasswordInput = driver.findElement(CONFIRMP_PASSWORD_SELECTOR);
-		confirmPasswordInput.clear();
-		confirmPasswordInput.sendKeys(confirmPassword);
-	}
-
-	public void enterProfessional(String professional) {
-		WebElement professionalInput = driver.findElement(PROFESIONAL_SELECTOR);
-		professionalInput.clear();
-		professionalInput.sendKeys(professional);
-	}
-
-	public void clickCreateAccountButton() {
-		WebElement createAccountButton = driver.findElement(CREATACCOUNT_SELECTOR);
-		createAccountButton.click();
-	}
-
-	public void createAccount(String firstName, String lastName, String country, String email, String password,
-			String confirmPassword, String professional) {
-		enterFirstName(firstName);
-		enterLastName(lastName);
-		selectCountry(country);
-		enterPassword(confirmPassword);
-		enterConfirmPassword(confirmPassword);
-		enterProfessional(professional);
-		clickCreateAccountButton();
-	}
-
-}
+	    public String getPassword() {
+	    	elementAction.waitUntilElementPresent(driver, PASSWORD_SELECTOR);
+			 WebElement password = driver.findElement(PASSWORD_SELECTOR);
+			// System.out.println(password.getText());
+			return password.getText();
+	    }
+	    
+	    public boolean isAdvertisementPresent()
+	    {
+	    	return elementAction.isElementPresent(driver);
+	    }
+	    
+	    public void closeAdvertisement()
+		{
+			/*
+			 * 
+			 * 
+			 * // Check if current window is an iframe if
+			 * (!driver.findElements(By.tagName("iframe")).isEmpty()) { for (WebElement
+			 * iframe : driver.findElements(By.tagName("iframe"))) {
+			 * driver.switchTo().frame(iframe).close();
+			 * 
+			 * driver.switchTo().defaultContent(); } }
+			 * 
+			 * // Check if an alert is present WebDriverWait wait = new
+			 * WebDriverWait(driver, 10); if
+			 * (wait.until(ExpectedConditions.alertIsPresent()) != null) { Alert alert =
+			 * driver.switchTo().alert(); // Handle the alert (accept, dismiss, etc.) // ...
+			 * alert.dismiss(); }
+			 */}}
