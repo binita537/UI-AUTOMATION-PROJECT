@@ -1,5 +1,7 @@
 # UI Automation Project
 
+## Overview
+Welcome to the UI Automation Framework, a comprehensive solution for automating the testing of web applications. This framework is designed to simplify the process of creating, organizing, and executing UI tests, allowing you to focus on testing your application's functionality with ease and efficiency.
 
 ## Key Features
 * **Structured Configuration:**
@@ -10,8 +12,9 @@ Utilizes the Factory Design Pattern to instantiate browser drivers dynamically.
 * **Reusable Utilities:** Offers utility classes such as CommonActions and CommonUtilities for widely used functions, ensuring DRY (Don't Repeat Yourself) code.
 * **Behavior-Driven Development (BDD):** Integrates Cucumber for writing tests in natural language, fostering collaboration between developers, QA, and non-technical stakeholders.
 * **Integrated Logging and Reporting:** Captures logs for debugging and creates comprehensive test execution reports.
+*  **Spring core:** Used spring boot concept to avoid Boilerplate code
 
-Technologies Used
+## Technologies Used
 * **Build Tool:** Maven (configuration in pom.xml)
 * **WebDriver Management:** Factory design pattern for dynamic driver instantiation based on browser preference.
 * **Test Structure:** Page Object Model (POM) for organizing test components and improving maintainability.
@@ -21,16 +24,35 @@ Technologies Used
 * **Logging:** (Specify your logging library, e.g., Log4j)
 * **Reporting:** (Specify your reporting tool, e.g., ExtentReports)
 
-## Getting Started
-
 ## Prerequisites
 * Java JDK installed (Specify the version, e.g., JDK 8 or higher).
 * Maven installed for dependency management.
 * A suitable IDE (like IntelliJ IDEA or Eclipse) with Cucumber plugins installed for BDD feature file execution.
 * Browser driver executables (e.g., ChromeDriver for Chrome) set up and available in the system PATH.
 
-## Overview
-This UI automation project is designed to automate testing for web applications. It utilizes a combination of tools and design patterns to provide an efficient and maintainable testing solution.
+
+## Installation
+1. Clone the Repository:
+`git clone https://github.com/your-repo-link/UI-AUTOMATION-FRAMEWORK.git`
+3. Navigate to the Project Directory:
+ `cd UI-AUTOMATION-FRAMEWORK`
+4. Install Dependencies:
+  All the project dependencies are listed in the pom.xml file. Maven will automatically handle them.
+   `mvn clean install`
+5. Configure Framework:
+    Update application.properties and config.properties with appropriate configurations like base URL, browser choice, etc.
+    Execute Tests:
+    `mvn test`
+6. View Reports:
+   After test execution, access the generated reports from the target directory or any specified report directory.
+
+## Folder Structure
+[Project structure create by using this link https://start.spring.io/ ]
+* **src/main/java:** Contains Java source code, including page objects and utilities.
+* **src/main/resources:** Contains the feature files and application.properties
+* **src/test/java:** Contains Test Runner.
+* **test-output:** Contains generated reports and Logs.
+
 
 ## Key Components
 
@@ -75,45 +97,20 @@ This UI automation project is designed to automate testing for web applications.
 - The project includes reporting mechanisms to generate detailed test reports.
 - Tools like ExtentReports or Allure can be used to create comprehensive test reports.
 
-## Getting Started
-To set up and run the UI automation project locally, follow the instructions in the [Setup Guide](setup-guide.md).
-
 ## Usage
-
-
-
-## Installation
-1. Clone the Repository:
-`git clone https://github.com/your-repo-link/UI-AUTOMATION-FRAMEWORK.git`
-3. Navigate to the Project Directory:
- `cd UI-AUTOMATION-FRAMEWORK`
-4. Install Dependencies:
-  All the project dependencies are listed in the pom.xml file. Maven will automatically handle them.
-   `mvn clean install`
-5. Configure Framework:
-    Update application.properties and config.properties with appropriate configurations like base URL, browser choice, etc.
-    Execute Tests:
-    `mvn test`
-6. View Reports:
-   After test execution, access the generated reports from the target directory or any specified report directory.
-
-
-
-
-
-
-
-
 
 ## Contribution
 
-
 ## License
 
+## Contact Information
+If you have any questions, or suggestions, or need assistance with this project, feel free to reach out:
 
-## Contact
-
+- **Your Name**
+  - Email: binitaoffical02@gmail.com 
+  - GitHub: https://github.com/binita537/
+  - LinkedIn: https://www.linkedin.com/in/binita-rathour-683ba0200/
 
 ## Authors
-- Author 1
-- Author 2
+- **Binita Rathour Jagram**
+
