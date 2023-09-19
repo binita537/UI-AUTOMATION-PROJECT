@@ -13,6 +13,18 @@ Welcome to the UI Automation Framework, a comprehensive solution for automating 
 </kbd>
 
 
+
+
+## Spring Boost Architecture Diagram
+
+
+
+<kbd>
+
+<img src="https://github.com/binita537/UI-AUTOMATION-PROJECT/assets/75611677/413119a1-9009-4e2c-afa7-6b6c6ea2f707" alt="your-image-description" style="border: 1px solid black;">
+</kbd>
+
+
 ## Key Features
 * **Structured Configuration:**
 Uses pom.xml, application.properties, and config.properties for centralized management of dependencies, application settings, and framework configurations.
