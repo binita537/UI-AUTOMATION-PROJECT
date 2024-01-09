@@ -9,9 +9,8 @@ Welcome to the UI Automation Framework, a comprehensive solution for automating 
 
 <kbd>
 
-<img src="https://github.com/binita537/UI-AUTOMATION-PROJECT/assets/75611677/e5a3e4dc-4ee6-4870-b7b5-d9f4e9b3c921" alt="your-image-description" style="border: 1px solid black;">
+<img src="https://github.com/binita537/UI-AUTOMATION-PROJECT/assets/75611677/5bff01cd-eb84-4819-ad01-4b9a5cebae1a" alt="your-image-description" style="border: 1px solid black;">
 </kbd>
-
 
 
 
